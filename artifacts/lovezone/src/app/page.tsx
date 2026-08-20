@@ -18,7 +18,7 @@ export default async function HomePage() {
             <p className="eyebrow">{hero.subtitle}</p>
             <h1 className="mt-5 grid gap-2 text-4xl font-semibold uppercase leading-[1.05] tracking-[-0.05em] sm:text-6xl"><span>{hero.lines[0]}</span><span className="text-zinc-300">{hero.lines[1]}</span><span className="text-[#ff0000]">{hero.lines[2]}</span></h1>
             <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-zinc-400 sm:text-[15px]">{hero.description}</p>
-            <Link className="button-primary mt-8 px-7" href="/signup">JOIN NOW</Link>
+            <Link className="button-primary mt-8 px-7" href="/signup" prefetch aria-label="Join PlayboyZone now">JOIN NOW</Link>
           </div>
         </section>
 

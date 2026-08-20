@@ -11,6 +11,10 @@ const storageRoot = process.env.STORAGE_DIR
   : path.join(process.cwd(), "storage");
 const databasePath = path.join(storageRoot, "database.json");
 const uploadFolders = ["profiles", "certificates", "qrcodes"] as const;
+const readCacheTtlMs = 2_000;
+let storageReady: Promise<void> | null = null;
+let databaseCache: { value: Database; expiresAt: number } | null = null;
+let databaseRead: Promise<Database> | null = null;
 
 const defaultSettings: SiteSettings = {
   hero: {
@@ -45,40 +49,64 @@ const defaultDatabase = (): Database => ({
 const safeName = (name: string) => name.replace(/[^a-zA-Z0-9._-]/g, "-");
 
 export async function ensureStorage() {
-  await fs.mkdir(storageRoot, { recursive: true });
-  await Promise.all(uploadFolders.map((folder) => fs.mkdir(path.join(storageRoot, folder), { recursive: true })));
+  if (storageReady) return storageReady;
+  storageReady = (async () => {
+    await fs.mkdir(storageRoot, { recursive: true });
+    await Promise.all(uploadFolders.map((folder) => fs.mkdir(path.join(storageRoot, folder), { recursive: true })));
+    try {
+      await fs.access(databasePath);
+    } catch {
+      await fs.writeFile(databasePath, JSON.stringify(defaultDatabase(), null, 2), "utf8");
+    }
+  })();
   try {
-    await fs.access(databasePath);
-  } catch {
-    await fs.writeFile(databasePath, JSON.stringify(defaultDatabase(), null, 2), "utf8");
+    await storageReady;
+  } catch (error) {
+    storageReady = null;
+    throw error;
   }
 }
 
 export async function readDatabase(): Promise<Database> {
-  await ensureStorage();
+  const now = Date.now();
+  if (databaseCache && databaseCache.expiresAt > now) return databaseCache.value;
+  if (databaseRead) return databaseRead;
+  databaseRead = (async () => {
+    await ensureStorage();
+    try {
+      const parsed = JSON.parse(await fs.readFile(databasePath, "utf8")) as Partial<Database>;
+      const defaults = defaultDatabase();
+      const database: Database = {
+        ...defaults,
+        ...parsed,
+        members: Array.isArray(parsed.members) ? parsed.members : [],
+        settings: {
+          ...defaults.settings,
+          ...parsed.settings,
+          hero: { ...defaults.settings.hero, ...parsed.settings?.hero },
+          process: { ...defaults.settings.process, ...parsed.settings?.process },
+          contacts: parsed.settings?.contacts || defaults.settings.contacts,
+          certificates: { ...defaults.settings.certificates, ...parsed.settings?.certificates },
+        },
+      };
+      databaseCache = { value: database, expiresAt: Date.now() + readCacheTtlMs };
+      return database;
+    } catch {
+      const database = defaultDatabase();
+      databaseCache = { value: database, expiresAt: Date.now() + readCacheTtlMs };
+      return database;
+    }
+  })();
   try {
-    const parsed = JSON.parse(await fs.readFile(databasePath, "utf8")) as Partial<Database>;
-    const defaults = defaultDatabase();
-    return {
-      ...defaults,
-      ...parsed,
-      members: Array.isArray(parsed.members) ? parsed.members : [],
-      settings: {
-        ...defaults.settings,
-        ...parsed.settings,
-        hero: { ...defaults.settings.hero, ...parsed.settings?.hero },
-        process: { ...defaults.settings.process, ...parsed.settings?.process },
-        contacts: parsed.settings?.contacts || defaults.settings.contacts,
-        certificates: { ...defaults.settings.certificates, ...parsed.settings?.certificates },
-      },
-    };
-  } catch {
-    return defaultDatabase();
+    return await databaseRead;
+  } finally {
+    databaseRead = null;
   }
 }
 
 export async function writeDatabase(database: Database) {
   await ensureStorage();
+  databaseCache = null;
   const temporaryPath = `${databasePath}.${randomBytes(6).toString("hex")}.tmp`;
   await fs.writeFile(temporaryPath, JSON.stringify(database, null, 2), "utf8");
   await fs.rename(temporaryPath, databasePath);
