@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
 const cookieName = "pbz_session";
-const sessionSecret = process.env.SESSION_SECRET || "replace-this-development-session-secret";
+const sessionSecret = process.env.SESSION_SECRET || "pbz-preview-session-secret-change-in-production";
 
 const signatureFor = (value: string) => createHmac("sha256", sessionSecret).update(value).digest("hex");
 
