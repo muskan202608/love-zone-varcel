@@ -1,0 +1,279 @@
+{
+  "nextEmployeeNumber": 5600,
+  "members": [],
+  "settings": {
+    "hero": {
+      "lines": [
+        "PLAY BOY JOBS",
+        "CALL BOY JOBS",
+        "MALE ESCORTS JOBS"
+      ],
+      "subtitle": "Verified & Trusted Platform Since 2009",
+      "description": "Join our premium membership platform and start receiving high-paying job opportunities near your location."
+    },
+    "process": {
+      "subtext": "Simple, Verified & Trusted Process Since 2009",
+      "steps": [
+        {
+          "title": "Registration",
+          "points": [
+            "Joining is completely free",
+            "No hidden charges",
+            "Register easily on the website"
+          ]
+        },
+        {
+          "title": "Profile Submission",
+          "points": [
+            "Submit your basic details",
+            "Choose your preferred work location"
+          ]
+        },
+        {
+          "title": "Membership Activation",
+          "points": [
+            "A professional work licence is required",
+            "Valid for 3 months"
+          ]
+        },
+        {
+          "title": "Verification Process",
+          "points": [
+            "Admin reviews your profile",
+            "Approved accounts receive a digital ID"
+          ]
+        },
+        {
+          "title": "Work Opportunities",
+          "points": [
+            "Receive regular opportunities",
+            "Flexible scheduling based on location"
+          ]
+        }
+      ]
+    },
+    "contacts": [
+      {
+        "id": "contact-1",
+        "name": "Member Support",
+        "phone": "9891167174",
+        "whatsapp": "9891167174"
+      },
+      {
+        "id": "contact-2",
+        "name": "Registration Desk",
+        "phone": "9876543210",
+        "whatsapp": "9876543210"
+      },
+      {
+        "id": "contact-3",
+        "name": "Membership Help",
+        "phone": "",
+        "whatsapp": ""
+      },
+      {
+        "id": "contact-4",
+        "name": "Verification Team",
+        "phone": "",
+        "whatsapp": ""
+      },
+      {
+        "id": "contact-5",
+        "name": "Account Assistance",
+        "phone": "",
+        "whatsapp": ""
+      },
+      {
+        "id": "contact-6",
+        "name": "Travel Support",
+        "phone": "",
+        "whatsapp": ""
+      },
+      {
+        "id": "contact-7",
+        "name": "Meeting Coordination",
+        "phone": "",
+        "whatsapp": ""
+      },
+      {
+        "id": "contact-8",
+        "name": "Priority Support",
+        "phone": "",
+        "whatsapp": ""
+      }
+    ],
+    "certificates": {},
+    "seo": {
+      "home": {
+        "title": "PlayboyZone | Membership Platform",
+        "description": "Verified membership and digital ID platform.",
+        "keywords": "membership, digital ID, verified platform"
+      },
+      "signup": {
+        "title": "Join PlayboyZone | Membership Application",
+        "description": "Create your PlayboyZone membership profile.",
+        "keywords": "membership signup, profile application"
+      },
+      "login": {
+        "title": "Login | PlayboyZone",
+        "description": "Secure access to your PlayboyZone membership profile.",
+        "keywords": "member login, PlayboyZone"
+      },
+      "member": {
+        "title": "My Membership | PlayboyZone",
+        "description": "View your membership status and verified digital ID.",
+        "keywords": "member dashboard, digital ID"
+      },
+      "verify": {
+        "title": "Member Verification | PlayboyZone",
+        "description": "Verify a PlayboyZone digital employee ID.",
+        "keywords": "employee verification, digital ID verification"
+      },
+      "delhi": {
+        "title": "Playboy Jobs in Delhi | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Delhi. High income opportunities.",
+        "keywords": "playboy jobs Delhi, call boy jobs Delhi, male escort jobs Delhi, high paying jobs Delhi"
+      },
+      "uttar-pradesh": {
+        "title": "Playboy Jobs in Uttar Pradesh | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Uttar Pradesh. High income opportunities.",
+        "keywords": "playboy jobs Uttar Pradesh, call boy jobs Uttar Pradesh, male escort jobs Uttar Pradesh, high paying jobs Uttar Pradesh"
+      },
+      "maharashtra": {
+        "title": "Playboy Jobs in Maharashtra | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Maharashtra. High income opportunities.",
+        "keywords": "playboy jobs Maharashtra, call boy jobs Maharashtra, male escort jobs Maharashtra, high paying jobs Maharashtra"
+      },
+      "gujarat": {
+        "title": "Playboy Jobs in Gujarat | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Gujarat. High income opportunities.",
+        "keywords": "playboy jobs Gujarat, call boy jobs Gujarat, male escort jobs Gujarat, high paying jobs Gujarat"
+      },
+      "rajasthan": {
+        "title": "Playboy Jobs in Rajasthan | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Rajasthan. High income opportunities.",
+        "keywords": "playboy jobs Rajasthan, call boy jobs Rajasthan, male escort jobs Rajasthan, high paying jobs Rajasthan"
+      },
+      "punjab": {
+        "title": "Playboy Jobs in Punjab | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Punjab. High income opportunities.",
+        "keywords": "playboy jobs Punjab, call boy jobs Punjab, male escort jobs Punjab, high paying jobs Punjab"
+      },
+      "haryana": {
+        "title": "Playboy Jobs in Haryana | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Haryana. High income opportunities.",
+        "keywords": "playboy jobs Haryana, call boy jobs Haryana, male escort jobs Haryana, high paying jobs Haryana"
+      },
+      "bihar": {
+        "title": "Playboy Jobs in Bihar | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Bihar. High income opportunities.",
+        "keywords": "playboy jobs Bihar, call boy jobs Bihar, male escort jobs Bihar, high paying jobs Bihar"
+      },
+      "jharkhand": {
+        "title": "Playboy Jobs in Jharkhand | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Jharkhand. High income opportunities.",
+        "keywords": "playboy jobs Jharkhand, call boy jobs Jharkhand, male escort jobs Jharkhand, high paying jobs Jharkhand"
+      },
+      "west-bengal": {
+        "title": "Playboy Jobs in West Bengal | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in West Bengal. High income opportunities.",
+        "keywords": "playboy jobs West Bengal, call boy jobs West Bengal, male escort jobs West Bengal, high paying jobs West Bengal"
+      },
+      "odisha": {
+        "title": "Playboy Jobs in Odisha | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Odisha. High income opportunities.",
+        "keywords": "playboy jobs Odisha, call boy jobs Odisha, male escort jobs Odisha, high paying jobs Odisha"
+      },
+      "chhattisgarh": {
+        "title": "Playboy Jobs in Chhattisgarh | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Chhattisgarh. High income opportunities.",
+        "keywords": "playboy jobs Chhattisgarh, call boy jobs Chhattisgarh, male escort jobs Chhattisgarh, high paying jobs Chhattisgarh"
+      },
+      "madhya-pradesh": {
+        "title": "Playboy Jobs in Madhya Pradesh | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Madhya Pradesh. High income opportunities.",
+        "keywords": "playboy jobs Madhya Pradesh, call boy jobs Madhya Pradesh, male escort jobs Madhya Pradesh, high paying jobs Madhya Pradesh"
+      },
+      "tamil-nadu": {
+        "title": "Playboy Jobs in Tamil Nadu | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Tamil Nadu. High income opportunities.",
+        "keywords": "playboy jobs Tamil Nadu, call boy jobs Tamil Nadu, male escort jobs Tamil Nadu, high paying jobs Tamil Nadu"
+      },
+      "karnataka": {
+        "title": "Playboy Jobs in Karnataka | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Karnataka. High income opportunities.",
+        "keywords": "playboy jobs Karnataka, call boy jobs Karnataka, male escort jobs Karnataka, high paying jobs Karnataka"
+      },
+      "kerala": {
+        "title": "Playboy Jobs in Kerala | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Kerala. High income opportunities.",
+        "keywords": "playboy jobs Kerala, call boy jobs Kerala, male escort jobs Kerala, high paying jobs Kerala"
+      },
+      "telangana": {
+        "title": "Playboy Jobs in Telangana | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Telangana. High income opportunities.",
+        "keywords": "playboy jobs Telangana, call boy jobs Telangana, male escort jobs Telangana, high paying jobs Telangana"
+      },
+      "andhra-pradesh": {
+        "title": "Playboy Jobs in Andhra Pradesh | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Andhra Pradesh. High income opportunities.",
+        "keywords": "playboy jobs Andhra Pradesh, call boy jobs Andhra Pradesh, male escort jobs Andhra Pradesh, high paying jobs Andhra Pradesh"
+      },
+      "assam": {
+        "title": "Playboy Jobs in Assam | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Assam. High income opportunities.",
+        "keywords": "playboy jobs Assam, call boy jobs Assam, male escort jobs Assam, high paying jobs Assam"
+      },
+      "himachal-pradesh": {
+        "title": "Playboy Jobs in Himachal Pradesh | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Himachal Pradesh. High income opportunities.",
+        "keywords": "playboy jobs Himachal Pradesh, call boy jobs Himachal Pradesh, male escort jobs Himachal Pradesh, high paying jobs Himachal Pradesh"
+      },
+      "uttarakhand": {
+        "title": "Playboy Jobs in Uttarakhand | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Uttarakhand. High income opportunities.",
+        "keywords": "playboy jobs Uttarakhand, call boy jobs Uttarakhand, male escort jobs Uttarakhand, high paying jobs Uttarakhand"
+      },
+      "goa": {
+        "title": "Playboy Jobs in Goa | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Goa. High income opportunities.",
+        "keywords": "playboy jobs Goa, call boy jobs Goa, male escort jobs Goa, high paying jobs Goa"
+      },
+      "tripura": {
+        "title": "Playboy Jobs in Tripura | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Tripura. High income opportunities.",
+        "keywords": "playboy jobs Tripura, call boy jobs Tripura, male escort jobs Tripura, high paying jobs Tripura"
+      },
+      "meghalaya": {
+        "title": "Playboy Jobs in Meghalaya | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Meghalaya. High income opportunities.",
+        "keywords": "playboy jobs Meghalaya, call boy jobs Meghalaya, male escort jobs Meghalaya, high paying jobs Meghalaya"
+      },
+      "manipur": {
+        "title": "Playboy Jobs in Manipur | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Manipur. High income opportunities.",
+        "keywords": "playboy jobs Manipur, call boy jobs Manipur, male escort jobs Manipur, high paying jobs Manipur"
+      },
+      "mizoram": {
+        "title": "Playboy Jobs in Mizoram | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Mizoram. High income opportunities.",
+        "keywords": "playboy jobs Mizoram, call boy jobs Mizoram, male escort jobs Mizoram, high paying jobs Mizoram"
+      },
+      "nagaland": {
+        "title": "Playboy Jobs in Nagaland | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Nagaland. High income opportunities.",
+        "keywords": "playboy jobs Nagaland, call boy jobs Nagaland, male escort jobs Nagaland, high paying jobs Nagaland"
+      },
+      "sikkim": {
+        "title": "Playboy Jobs in Sikkim | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Sikkim. High income opportunities.",
+        "keywords": "playboy jobs Sikkim, call boy jobs Sikkim, male escort jobs Sikkim, high paying jobs Sikkim"
+      },
+      "arunachal-pradesh": {
+        "title": "Playboy Jobs in Arunachal Pradesh | High Paying Jobs",
+        "description": "Find playboy jobs, call boy jobs, male escort jobs in Arunachal Pradesh. High income opportunities.",
+        "keywords": "playboy jobs Arunachal Pradesh, call boy jobs Arunachal Pradesh, male escort jobs Arunachal Pradesh, high paying jobs Arunachal Pradesh"
+      }
+    }
+  }
+}
