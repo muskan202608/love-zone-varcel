@@ -1,0 +1,35 @@
+export const stateSeoPages = [
+  { slug: "delhi", name: "Delhi" },
+  { slug: "uttar-pradesh", name: "Uttar Pradesh" },
+  { slug: "maharashtra", name: "Maharashtra" },
+  { slug: "gujarat", name: "Gujarat" },
+  { slug: "rajasthan", name: "Rajasthan" },
+  { slug: "punjab", name: "Punjab" },
+  { slug: "haryana", name: "Haryana" },
+  { slug: "bihar", name: "Bihar" },
+  { slug: "jharkhand", name: "Jharkhand" },
+  { slug: "west-bengal", name: "West Bengal" },
+  { slug: "odisha", name: "Odisha" },
+  { slug: "chhattisgarh", name: "Chhattisgarh" },
+  { slug: "madhya-pradesh", name: "Madhya Pradesh" },
+  { slug: "tamil-nadu", name: "Tamil Nadu" },
+  { slug: "karnataka", name: "Karnataka" },
+  { slug: "kerala", name: "Kerala" },
+  { slug: "telangana", name: "Telangana" },
+  { slug: "andhra-pradesh", name: "Andhra Pradesh" },
+  { slug: "assam", name: "Assam" },
+  { slug: "himachal-pradesh", name: "Himachal Pradesh" },
+  { slug: "uttarakhand", name: "Uttarakhand" },
+  { slug: "goa", name: "Goa" },
+  { slug: "tripura", name: "Tripura" },
+  { slug: "meghalaya", name: "Meghalaya" },
+  { slug: "manipur", name: "Manipur" },
+  { slug: "mizoram", name: "Mizoram" },
+  { slug: "nagaland", name: "Nagaland" },
+  { slug: "sikkim", name: "Sikkim" },
+  { slug: "arunachal-pradesh", name: "Arunachal Pradesh" },
+] as const;
+
+export type StateSeoPage = (typeof stateSeoPages)[number]["slug"];
+
+export const stateSeoPageBySlug = new Map(stateSeoPages.map((state) => [state.slug, state]));

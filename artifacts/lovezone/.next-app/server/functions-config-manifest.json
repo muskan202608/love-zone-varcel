@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "functions": {
+    "/api/admin": {},
+    "/api/admin/certificate": {},
+    "/api/auth/login": {},
+    "/api/auth/signup": {},
+    "/api/files/[...path]": {}
+  }
+}

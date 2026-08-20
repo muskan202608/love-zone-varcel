@@ -1,0 +1,47 @@
+{
+  "components\\id-card.tsx -> html2canvas": {
+    "id": 82201,
+    "files": [
+      "static/chunks/ad2866b8.63039225c037cd53.js"
+    ]
+  },
+  "components\\id-card.tsx -> jspdf": {
+    "id": 18831,
+    "files": [
+      "static/chunks/2f0b94e8.7e2e6bbc3f117955.js",
+      "static/chunks/164f4fb6.a1670b0f69550d90.js",
+      "static/chunks/233.e0d099f824cbdefa.js"
+    ]
+  },
+  "node_modules\\jspdf\\dist\\jspdf.es.min.js -> canvg": {
+    "id": 3167,
+    "files": [
+      "static/chunks/bc98253f.5697b3bd7c61957c.js",
+      "static/chunks/902.a62c0f31352212fd.js"
+    ]
+  },
+  "node_modules\\jspdf\\dist\\jspdf.es.min.js -> dompurify": {
+    "id": 91992,
+    "files": [
+      "static/chunks/992.27d4ef4be51a5550.js"
+    ]
+  },
+  "node_modules\\jspdf\\dist\\jspdf.es.min.js -> html2canvas": {
+    "id": 82201,
+    "files": [
+      "static/chunks/ad2866b8.63039225c037cd53.js"
+    ]
+  },
+  "node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
+    "id": 41966,
+    "files": [
+      "static/chunks/966.93d3fac57fa0ff88.js"
+    ]
+  },
+  "node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
+    "id": 3899,
+    "files": [
+      "static/chunks/899.04b803787d626a30.js"
+    ]
+  }
+}

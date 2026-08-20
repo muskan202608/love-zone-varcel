@@ -1,0 +1,1024 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: LoveZone API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: listings
+    description: Escort listing operations
+  - name: states
+    description: State operations
+  - name: cities
+    description: City operations
+  - name: seo
+    description: SEO page operations
+  - name: settings
+    description: Site settings operations
+  - name: admin
+    description: Admin authentication operations
+  - name: dashboard
+    description: Dashboard statistics
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  # --- Admin Auth ---
+  /admin/login:
+    post:
+      operationId: adminLogin
+      tags: [admin]
+      summary: Admin login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminCredentials"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
+        "401":
+          description: Unauthorized
+
+  /admin/logout:
+    post:
+      operationId: adminLogout
+      tags: [admin]
+      summary: Admin logout
+      responses:
+        "200":
+          description: Logged out
+
+  /admin/me:
+    get:
+      operationId: getAdminMe
+      tags: [admin]
+      summary: Get current admin session
+      responses:
+        "200":
+          description: Current admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
+        "401":
+          description: Not authenticated
+
+  # --- Dashboard ---
+  /dashboard/stats:
+    get:
+      operationId: getDashboardStats
+      tags: [dashboard]
+      summary: Get dashboard statistics
+      responses:
+        "200":
+          description: Dashboard stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardStats"
+
+  # --- Site Settings ---
+  /settings:
+    get:
+      operationId: getSiteSettings
+      tags: [settings]
+      summary: Get site settings
+      responses:
+        "200":
+          description: Site settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteSettings"
+    patch:
+      operationId: updateSiteSettings
+      tags: [settings]
+      summary: Update site settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SiteSettingsUpdate"
+      responses:
+        "200":
+          description: Updated settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteSettings"
+
+  # --- States ---
+  /states:
+    get:
+      operationId: listStates
+      tags: [states]
+      summary: List all states
+      responses:
+        "200":
+          description: List of states
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/State"
+    post:
+      operationId: createState
+      tags: [states]
+      summary: Create a state
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StateInput"
+      responses:
+        "201":
+          description: Created state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/State"
+
+  /states/{slug}:
+    get:
+      operationId: getState
+      tags: [states]
+      summary: Get state by slug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: State details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/State"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateState
+      tags: [states]
+      summary: Update a state
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StateUpdate"
+      responses:
+        "200":
+          description: Updated state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/State"
+    delete:
+      operationId: deleteState
+      tags: [states]
+      summary: Delete a state
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+
+  # --- Import ---
+  /import/states:
+    post:
+      operationId: bulkImportStates
+      tags: [states]
+      summary: Bulk import states (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BulkStateImport"
+      responses:
+        "200":
+          description: Import result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkImportResult"
+
+  /import/cities:
+    post:
+      operationId: bulkImportCities
+      tags: [cities]
+      summary: Bulk import cities (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BulkCityImport"
+      responses:
+        "200":
+          description: Import result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkImportResult"
+
+  /import/cities-csv:
+    post:
+      operationId: bulkImportCitiesCsv
+      tags: [cities]
+      summary: Bulk import cities via CSV text (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [csv]
+              properties:
+                csv:
+                  type: string
+                  description: "CSV text with headers: state,city"
+      responses:
+        "200":
+          description: Import result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkImportResult"
+
+  # --- Cities ---
+  /cities:
+    get:
+      operationId: listCities
+      tags: [cities]
+      summary: List all cities
+      parameters:
+        - name: stateSlug
+          in: query
+          schema:
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Search cities by name
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+          description: Max results to return (default 100)
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+          description: Offset for pagination (default 0)
+      responses:
+        "200":
+          description: Paginated list of cities
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CityListResponse"
+    post:
+      operationId: createCity
+      tags: [cities]
+      summary: Create a city
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CityInput"
+      responses:
+        "201":
+          description: Created city
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/City"
+
+  /cities/{slug}:
+    get:
+      operationId: getCity
+      tags: [cities]
+      summary: Get city by slug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: City details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/City"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateCity
+      tags: [cities]
+      summary: Update a city
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CityUpdate"
+      responses:
+        "200":
+          description: Updated city
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/City"
+    delete:
+      operationId: deleteCity
+      tags: [cities]
+      summary: Delete a city
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+
+  # --- Listings ---
+  /listings:
+    get:
+      operationId: listListings
+      tags: [listings]
+      summary: List all listings
+      parameters:
+        - name: stateSlug
+          in: query
+          schema:
+            type: string
+        - name: citySlug
+          in: query
+          schema:
+            type: string
+        - name: featured
+          in: query
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Listing results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListingPage"
+    post:
+      operationId: createListing
+      tags: [listings]
+      summary: Create a listing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ListingInput"
+      responses:
+        "201":
+          description: Created listing
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Listing"
+
+  /listings/{id}:
+    get:
+      operationId: getListing
+      tags: [listings]
+      summary: Get listing by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Listing details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Listing"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateListing
+      tags: [listings]
+      summary: Update a listing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ListingUpdate"
+      responses:
+        "200":
+          description: Updated listing
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Listing"
+    delete:
+      operationId: deleteListing
+      tags: [listings]
+      summary: Delete a listing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # --- SEO Pages ---
+  /seo-pages:
+    get:
+      operationId: listSeoPages
+      tags: [seo]
+      summary: List all SEO pages
+      responses:
+        "200":
+          description: SEO pages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SeoPage"
+    post:
+      operationId: createSeoPage
+      tags: [seo]
+      summary: Create an SEO page
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SeoPageInput"
+      responses:
+        "201":
+          description: Created SEO page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SeoPage"
+
+  /seo-pages/{slug}:
+    get:
+      operationId: getSeoPage
+      tags: [seo]
+      summary: Get SEO page by slug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: SEO page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SeoPage"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateSeoPage
+      tags: [seo]
+      summary: Update an SEO page
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SeoPageUpdate"
+      responses:
+        "200":
+          description: Updated SEO page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SeoPage"
+    delete:
+      operationId: deleteSeoPage
+      tags: [seo]
+      summary: Delete an SEO page
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    AdminCredentials:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    AdminSession:
+      type: object
+      required: [id, username]
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+
+    DashboardStats:
+      type: object
+      required: [totalListings, totalStates, totalCities, totalSeoPages, featuredListings, activeListings]
+      properties:
+        totalListings:
+          type: integer
+        totalStates:
+          type: integer
+        totalCities:
+          type: integer
+        totalSeoPages:
+          type: integer
+        featuredListings:
+          type: integer
+        activeListings:
+          type: integer
+
+    SiteSettings:
+      type: object
+      required: [id, phoneNumber, whatsappNumber, email, siteName]
+      properties:
+        id:
+          type: integer
+        siteName:
+          type: string
+        phoneNumber:
+          type: string
+        whatsappNumber:
+          type: string
+        email:
+          type: string
+        updatedAt:
+          type: ["string", "null"]
+
+    SiteSettingsUpdate:
+      type: object
+      properties:
+        siteName:
+          type: string
+        phoneNumber:
+          type: string
+        whatsappNumber:
+          type: string
+        email:
+          type: string
+
+    State:
+      type: object
+      required: [id, name, slug, listingCount]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: ["string", "null"]
+        metaTitle:
+          type: ["string", "null"]
+        metaDescription:
+          type: ["string", "null"]
+        listingCount:
+          type: integer
+        createdAt:
+          type: ["string", "null"]
+
+    StateInput:
+      type: object
+      required: [name, slug]
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        metaTitle:
+          type: string
+        metaDescription:
+          type: string
+
+    StateUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        metaTitle:
+          type: string
+        metaDescription:
+          type: string
+
+    CityListResponse:
+      type: object
+      required: [data, total, limit, offset]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/City"
+        total:
+          type: integer
+          description: Total number of matching cities
+        limit:
+          type: integer
+        offset:
+          type: integer
+
+    City:
+      type: object
+      required: [id, name, slug, stateSlug, stateName, listingCount]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        stateSlug:
+          type: string
+        stateName:
+          type: string
+        description:
+          type: ["string", "null"]
+        metaTitle:
+          type: ["string", "null"]
+        metaDescription:
+          type: ["string", "null"]
+        listingCount:
+          type: integer
+        createdAt:
+          type: ["string", "null"]
+
+    CityInput:
+      type: object
+      required: [name, slug, stateSlug]
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        stateSlug:
+          type: string
+        description:
+          type: string
+        metaTitle:
+          type: string
+        metaDescription:
+          type: string
+
+    CityUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        stateSlug:
+          type: string
+        description:
+          type: string
+        metaTitle:
+          type: string
+        metaDescription:
+          type: string
+
+    Listing:
+      type: object
+      required: [id, name, slug, stateSlug, citySlug, stateName, cityName, isActive, isFeatured]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        age:
+          type: ["integer", "null"]
+        description:
+          type: ["string", "null"]
+        phone:
+          type: ["string", "null"]
+        whatsapp:
+          type: ["string", "null"]
+        imageUrl:
+          type: ["string", "null"]
+        stateSlug:
+          type: string
+        citySlug:
+          type: string
+        stateName:
+          type: string
+        cityName:
+          type: string
+        services:
+          type: ["string", "null"]
+        height:
+          type: ["string", "null"]
+        weight:
+          type: ["string", "null"]
+        isActive:
+          type: boolean
+        isFeatured:
+          type: boolean
+        createdAt:
+          type: ["string", "null"]
+
+    ListingInput:
+      type: object
+      required: [name, slug, stateSlug, citySlug]
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        age:
+          type: integer
+        description:
+          type: string
+        phone:
+          type: string
+        whatsapp:
+          type: string
+        imageUrl:
+          type: string
+        stateSlug:
+          type: string
+        citySlug:
+          type: string
+        services:
+          type: string
+        height:
+          type: string
+        weight:
+          type: string
+        isActive:
+          type: boolean
+        isFeatured:
+          type: boolean
+
+    ListingUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        age:
+          type: integer
+        description:
+          type: string
+        phone:
+          type: string
+        whatsapp:
+          type: string
+        imageUrl:
+          type: string
+        stateSlug:
+          type: string
+        citySlug:
+          type: string
+        services:
+          type: string
+        height:
+          type: string
+        weight:
+          type: string
+        isActive:
+          type: boolean
+        isFeatured:
+          type: boolean
+
+    ListingPage:
+      type: object
+      required: [data, total, page, limit]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Listing"
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+
+    BulkImportResult:
+      type: object
+      required: [inserted, skipped, errors]
+      properties:
+        inserted:
+          type: integer
+        skipped:
+          type: integer
+        errors:
+          type: array
+          items:
+            type: string
+
+    BulkStateImport:
+      type: object
+      required: [states]
+      properties:
+        states:
+          type: array
+          items:
+            type: object
+            required: [name]
+            properties:
+              name:
+                type: string
+              slug:
+                type: string
+
+    BulkCityImport:
+      type: object
+      required: [cities]
+      properties:
+        cities:
+          type: array
+          items:
+            type: object
+            required: [state, city]
+            properties:
+              state:
+                type: string
+              city:
+                type: string
+
+    SeoPage:
+      type: object
+      required: [id, keyword, slug, seoTitle, metaDescription, h1Heading, content]
+      properties:
+        id:
+          type: integer
+        keyword:
+          type: string
+        slug:
+          type: string
+        seoTitle:
+          type: string
+        metaDescription:
+          type: string
+        h1Heading:
+          type: string
+        content:
+          type: string
+        faq:
+          type: ["string", "null"]
+        isActive:
+          type: boolean
+        createdAt:
+          type: ["string", "null"]
+        updatedAt:
+          type: ["string", "null"]
+
+    SeoPageInput:
+      type: object
+      required: [keyword, slug, seoTitle, metaDescription, h1Heading, content]
+      properties:
+        keyword:
+          type: string
+        slug:
+          type: string
+        seoTitle:
+          type: string
+        metaDescription:
+          type: string
+        h1Heading:
+          type: string
+        content:
+          type: string
+        faq:
+          type: string
+        isActive:
+          type: boolean
+
+    SeoPageUpdate:
+      type: object
+      properties:
+        keyword:
+          type: string
+        slug:
+          type: string
+        seoTitle:
+          type: string
+        metaDescription:
+          type: string
+        h1Heading:
+          type: string
+        content:
+          type: string
+        faq:
+          type: string
+        isActive:
+          type: boolean

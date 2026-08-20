@@ -1,0 +1,1 @@
+globalThis.__RSC_MANIFEST=(globalThis.__RSC_MANIFEST||{});globalThis.__RSC_MANIFEST["/api/admin/route"]={"moduleLoading":{"prefix":"/_next/"},"ssrModuleMapping":{},"edgeSSRModuleMapping":{},"clientModules":{},"entryCSSFiles":{"C:\\Users\\pc\\Downloads\\LoveZone-Directory\\artifacts\\lovezone\\app\\api\\admin\\route":[]},"rscModuleMapping":{},"edgeRscModuleMapping":{}};
